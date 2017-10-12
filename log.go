@@ -25,8 +25,12 @@ func Instance() *logrus.Logger {
 	return logger
 }
 
-func SetLogLevel(level logrus.Level) {
-	logger.Level = level
+func SetLogLevel(level string) {
+	l, err := logrus.ParseLevel(level)
+	if err != nil {
+		fmt.Println(err)
+	}
+	logger.Level = l
 }
 
 func SetLogFormatter(formatter logrus.Formatter) {
